@@ -71,7 +71,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-8 pt-8 border-t border-white/10">
-              <span className="text-slate-600 text-sm font-mono">© 2024 Lee Min-seo (Neural Lab). ALL RIGHTS RESERVED.</span>
+              <span className="text-slate-600 text-sm font-mono">© 2026 Lee Min-seo (Neural Lab). ALL RIGHTS RESERVED.</span>
             </div>
 
           </div>
