@@ -85,20 +85,21 @@ const PhoneFrame: React.FC<{ children: React.ReactNode; color?: 'dark' | 'light'
 // App 1: Fintech Wallet (Dark Mode)
 // ==========================================
 const FintechApp = () => {
+   const { t } = useLanguage();
    const [balance, setBalance] = useState(1250400);
    const [activeTab, setActiveTab] = useState('home');
    const [showSendModal, setShowSendModal] = useState(false);
    const [transactions, setTransactions] = useState([
-      { id: 1, name: 'Netflix Sub', amount: -14500, date: '오늘' },
-      { id: 2, name: '김민수', amount: +50000, date: '어제' },
-      { id: 3, name: 'Starbucks', amount: -4500, date: '어제' },
+      { id: 1, name: 'Netflix Sub', amount: -14500, date: t.demos.fintech.today },
+      { id: 2, name: 'John Kim', amount: +50000, date: t.demos.fintech.yesterday },
+      { id: 3, name: 'Starbucks', amount: -4500, date: t.demos.fintech.yesterday },
    ]);
 
    const handleSend = () => {
       setShowSendModal(true);
       setTimeout(() => {
          setBalance(prev => prev - 10000);
-         setTransactions(prev => [{ id: Date.now(), name: '송금 완료', amount: -10000, date: '방금' }, ...prev]);
+         setTransactions(prev => [{ id: Date.now(), name: t.demos.fintech.sendComplete, amount: -10000, date: t.demos.fintech.justNow }, ...prev]);
          setShowSendModal(false);
       }, 1500);
    };
@@ -112,8 +113,8 @@ const FintechApp = () => {
                   <div className="w-full h-full bg-slate-900 rounded-full flex items-center justify-center text-xs font-bold">NL</div>
                </div>
                <div>
-                  <div className="text-xs text-slate-400">안녕하세요,</div>
-                  <div className="font-bold text-sm">User님</div>
+                  <div className="text-xs text-slate-400">{t.demos.fintech.hello}</div>
+                  <div className="font-bold text-sm">{t.demos.fintech.user}</div>
                </div>
             </div>
             <Bell size={20} className="text-slate-400" />
@@ -131,7 +132,7 @@ const FintechApp = () => {
                   <div className="text-3xl font-bold mb-1">₩ {balance.toLocaleString()}</div>
                   <div className="flex gap-2 text-xs text-white/60">
                      <span className="bg-white/10 px-2 py-0.5 rounded">+2.4%</span>
-                     <span>vs 지난달</span>
+                     <span>{t.demos.fintech.vsLastMonth}</span>
                   </div>
                </div>
                <div className="flex justify-between items-center">
@@ -144,18 +145,18 @@ const FintechApp = () => {
          {/* Actions */}
          <div className="px-6 py-6 flex gap-4">
             <button onClick={handleSend} className="flex-1 bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-900 py-3 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-colors">
-               <Send size={16} /> 송금
+               <Send size={16} /> {t.demos.fintech.send}
             </button>
             <button className="flex-1 bg-slate-800 hover:bg-slate-700 active:bg-slate-600 text-white py-3 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 transition-colors">
-               <Plus size={16} /> 충전
+               <Plus size={16} /> {t.demos.fintech.charge}
             </button>
          </div>
 
          {/* Transactions */}
          <div className="flex-1 bg-slate-800 rounded-t-[2rem] p-6 overflow-hidden flex flex-col">
             <div className="flex justify-between items-center mb-4">
-               <h3 className="font-bold text-lg">최근 내역</h3>
-               <span className="text-xs text-emerald-400 font-bold cursor-pointer">전체보기</span>
+               <h3 className="font-bold text-lg">{t.demos.fintech.recentTransactions}</h3>
+               <span className="text-xs text-emerald-400 font-bold cursor-pointer">{t.demos.fintech.viewAll}</span>
             </div>
             <div className="flex-1 overflow-y-auto space-y-4 no-scrollbar pb-10">
                <AnimatePresence>
@@ -211,8 +212,8 @@ const FintechApp = () => {
                      <div className="w-12 h-12 rounded-full bg-emerald-500 mx-auto flex items-center justify-center mb-4">
                         <Send className="text-slate-900 ml-1" />
                      </div>
-                     <h3 className="font-bold mb-1">송금 진행 중...</h3>
-                     <p className="text-xs text-slate-400">잠시만 기다려주세요</p>
+                     <h3 className="font-bold mb-1">{t.demos.fintech.sendingInProgress}</h3>
+                     <p className="text-xs text-slate-400">{t.demos.fintech.pleaseWait}</p>
                   </motion.div>
                </motion.div>
             )}
@@ -225,15 +226,16 @@ const FintechApp = () => {
 // App 2: Food Delivery (Light Mode)
 // ==========================================
 const DeliveryApp = () => {
+   const { t } = useLanguage();
    const [cart, setCart] = useState<number[]>([]);
    const [activeCategory, setActiveCategory] = useState(0);
-   const categories = ['버거', '피자', '한식', '디저트', '일식'];
+   const categories = t.demos.delivery.categories;
 
    const foods = [
-      { id: 1, name: '더블 치즈버거', price: 8900, img: '🍔', time: '15-20분', rating: 4.8 },
-      { id: 2, name: '페퍼로니 피자', price: 16000, img: '🍕', time: '25-30분', rating: 4.7 },
-      { id: 3, name: '아보카도 샐러드', price: 11500, img: '🥗', time: '10-15분', rating: 4.9 },
-      { id: 4, name: '초코 도넛', price: 3500, img: '🍩', time: '5-10분', rating: 4.6 },
+      { id: 1, name: t.demos.delivery.foods[0].name, price: 8900, img: '🍔', time: t.demos.delivery.foods[0].time, rating: 4.8 },
+      { id: 2, name: t.demos.delivery.foods[1].name, price: 16000, img: '🍕', time: t.demos.delivery.foods[1].time, rating: 4.7 },
+      { id: 3, name: t.demos.delivery.foods[2].name, price: 11500, img: '🥗', time: t.demos.delivery.foods[2].time, rating: 4.9 },
+      { id: 4, name: t.demos.delivery.foods[3].name, price: 3500, img: '🍩', time: t.demos.delivery.foods[3].time, rating: 4.6 },
    ];
 
    const addToCart = (id: number) => {
@@ -247,12 +249,12 @@ const DeliveryApp = () => {
             <div className="px-6 mb-4">
                <div className="flex items-center gap-2 mb-4">
                   <MapPin size={16} className="text-orange-500" />
-                  <span className="font-bold text-sm truncate">서울시 강남구 테헤란로 427</span>
+                  <span className="font-bold text-sm truncate">{t.demos.delivery.address}</span>
                   <ChevronDown size={14} className="text-slate-400" />
                </div>
                <div className="bg-gray-100 rounded-xl flex items-center px-4 py-2.5 gap-2">
                   <Search size={18} className="text-slate-400" />
-                  <input type="text" placeholder="먹고 싶은 메뉴를 검색해보세요" className="bg-transparent text-sm w-full outline-none placeholder:text-slate-400" />
+                  <input type="text" placeholder={t.demos.delivery.searchPlaceholder} className="bg-transparent text-sm w-full outline-none placeholder:text-slate-400" />
                </div>
             </div>
 
@@ -274,9 +276,9 @@ const DeliveryApp = () => {
          <div className="px-6 my-6">
             <div className="w-full aspect-[2.2] bg-slate-900 rounded-2xl overflow-hidden relative flex items-center px-6">
                <div className="relative z-10 text-white">
-                  <div className="text-xs font-bold text-orange-400 mb-1">첫 주문 할인</div>
-                  <div className="text-xl font-black leading-tight mb-2">모든 메뉴<br />20% 할인</div>
-                  <button className="bg-white text-slate-900 text-[10px] font-bold px-3 py-1.5 rounded-full">쿠폰 받기</button>
+                  <div className="text-xs font-bold text-orange-400 mb-1">{t.demos.delivery.firstOrderDiscount}</div>
+                  <div className="text-xl font-black leading-tight mb-2" style={{ whiteSpace: 'pre-line' }}>{t.demos.delivery.allMenuDiscount}</div>
+                  <button className="bg-white text-slate-900 text-[10px] font-bold px-3 py-1.5 rounded-full">{t.demos.delivery.getCoupon}</button>
                </div>
                <div className="absolute right-2 bottom-[-5px] text-[70px]">🍟</div>
             </div>
@@ -284,7 +286,7 @@ const DeliveryApp = () => {
 
          {/* Food List */}
          <div className="px-6 pb-24 space-y-4">
-            <div className="font-bold text-lg">추천 메뉴</div>
+            <div className="font-bold text-lg">{t.demos.delivery.recommended}</div>
             {foods.map((food) => (
                <div key={food.id} className="bg-white p-3 rounded-2xl border border-slate-100 shadow-sm flex gap-4 hover:shadow-md transition-shadow cursor-pointer active:scale-[0.98]">
                   <div className="w-20 h-20 bg-gray-50 rounded-xl flex items-center justify-center text-4xl shadow-inner">
@@ -323,7 +325,7 @@ const DeliveryApp = () => {
                         <div className="bg-orange-500 text-white w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold">
                            {cart.length}
                         </div>
-                        <span className="font-bold text-sm">장바구니 보기</span>
+                        <span className="font-bold text-sm">{t.demos.delivery.viewCart}</span>
                      </div>
                      <span className="font-bold text-sm">₩{(cart.reduce((acc, id) => acc + (foods.find(f => f.id === id)?.price || 0), 0)).toLocaleString()}</span>
                   </button>
@@ -362,7 +364,7 @@ const MobileApps: React.FC = () => {
                         </div>
                         <div>
                            <strong className="block text-textMain">Cross-Platform</strong>
-                           <span className="text-sm text-textSub">하나의 코드베이스로 네이티브 성능 구현</span>
+                           <span className="text-sm text-textSub">Native performance from a single codebase</span>
                         </div>
                      </li>
                      <li className="flex items-start gap-3">
@@ -371,7 +373,7 @@ const MobileApps: React.FC = () => {
                         </div>
                         <div>
                            <strong className="block text-textMain">Native Modules</strong>
-                           <span className="text-sm text-textSub">디바이스 고유 기능(카메라, GPS 등) 정밀 제어</span>
+                           <span className="text-sm text-textSub">Precise control of device features (camera, GPS, etc.)</span>
                         </div>
                      </li>
                   </ul>

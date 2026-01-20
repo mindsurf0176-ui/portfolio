@@ -14,6 +14,7 @@ import { useLanguage } from '../i18n';
 // 1. Dashboard Demo (Functional)
 // ==========================================
 const DashboardDemo = () => {
+   const { t, language } = useLanguage();
    const [timeRange, setTimeRange] = useState<'daily' | 'weekly'>('weekly');
    const [hoveredValue, setHoveredValue] = useState<number | null>(null);
    const [showNotif, setShowNotif] = useState(false);
@@ -22,13 +23,13 @@ const DashboardDemo = () => {
    const data = useMemo(() => ({
       daily: {
          revenue: '₩8,420,000',
-         users: '452명',
+         users: '452',
          bounce: '38.2%',
          chart: [20, 35, 25, 45, 30, 55, 40, 60, 50, 75, 65, 80, 70, 90, 85, 95, 60, 70, 50, 60, 45, 55, 40, 30]
       },
       weekly: {
          revenue: '₩48,200,000',
-         users: '2,405명',
+         users: '2,405',
          bounce: '42.3%',
          chart: [40, 60, 45, 70, 60, 80, 75, 50, 65, 85, 90, 70, 80, 95]
       }
@@ -60,10 +61,10 @@ const DashboardDemo = () => {
             {/* Topbar */}
             <div className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm z-10">
                <div className="flex items-center gap-4">
-                  <h3 className="font-bold text-slate-800 text-lg tracking-tight">통합 대시보드</h3>
+                  <h3 className="font-bold text-slate-800 text-lg tracking-tight">{t.demos.dashboard.title}</h3>
                   <div className="h-4 w-px bg-slate-200" />
                   <div className="text-sm text-slate-500 flex items-center gap-1 cursor-pointer hover:text-slate-800 bg-slate-100 px-2 py-1 rounded-md transition-colors">
-                     {timeRange === 'weekly' ? '최근 30일' : '오늘'} <ChevronDown size={14} />
+                     {timeRange === 'weekly' ? t.demos.dashboard.last30Days : t.demos.dashboard.today} <ChevronDown size={14} />
                   </div>
                </div>
                <div className="flex items-center gap-4">
@@ -92,9 +93,9 @@ const DashboardDemo = () => {
                {/* Stats Row */}
                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                   {[
-                     { label: '누적 매출액', value: currentData.revenue, change: timeRange === 'weekly' ? '+12.4%' : '+2.1%', icon: DollarSign, color: 'text-emerald-600', bg: 'bg-emerald-50' },
-                     { label: '활성 사용자', value: currentData.users, change: timeRange === 'weekly' ? '+5.2%' : '+0.8%', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
-                     { label: '이탈률', value: currentData.bounce, change: '-2.1%', icon: Activity, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+                     { label: t.demos.dashboard.revenue, value: currentData.revenue, change: timeRange === 'weekly' ? '+12.4%' : '+2.1%', icon: DollarSign, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+                     { label: t.demos.dashboard.users, value: currentData.users, change: timeRange === 'weekly' ? '+5.2%' : '+0.8%', icon: Users, color: 'text-blue-600', bg: 'bg-blue-50' },
+                     { label: t.demos.dashboard.bounce, value: currentData.bounce, change: '-2.1%', icon: Activity, color: 'text-indigo-600', bg: 'bg-indigo-50' },
                   ].map((stat, i) => (
                      <motion.div
                         key={i}
@@ -124,19 +125,19 @@ const DashboardDemo = () => {
                <div className="flex-1 bg-white rounded-2xl border border-slate-200 shadow-sm p-6 flex flex-col relative overflow-hidden">
                   <div className="flex justify-between items-center mb-6 relative z-10">
                      <div>
-                        <h4 className="font-bold text-slate-800 text-lg">매출 추이 분석</h4>
+                        <h4 className="font-bold text-slate-800 text-lg">{t.demos.dashboard.chartTitle}</h4>
                         <p className="text-xs text-slate-400 mt-1 font-medium">
-                           {hoveredValue ? `선택된 구간 매출: ₩${(hoveredValue * 12000).toLocaleString()}` : '마우스를 올려 상세 내역을 확인하세요'}
+                           {hoveredValue ? `${t.demos.dashboard.chartSelected}: ₩${(hoveredValue * 12000).toLocaleString()}` : t.demos.dashboard.chartHover}
                         </p>
                      </div>
                      <div className="flex p-1 bg-slate-100 rounded-xl gap-1">
-                        {['daily', 'weekly'].map((t) => (
+                        {['daily', 'weekly'].map((range) => (
                            <button
-                              key={t}
-                              onClick={() => setTimeRange(t as 'daily' | 'weekly')}
-                              className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${timeRange === t ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
+                              key={range}
+                              onClick={() => setTimeRange(range as 'daily' | 'weekly')}
+                              className={`px-4 py-1.5 text-xs font-bold rounded-lg transition-all ${timeRange === range ? 'bg-white text-indigo-600 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}
                            >
-                              {t === 'daily' ? '일간' : '주간'}
+                              {range === 'daily' ? t.demos.dashboard.daily : t.demos.dashboard.weekly}
                            </button>
                         ))}
                      </div>
@@ -161,7 +162,7 @@ const DashboardDemo = () => {
                            />
                            {/* Tooltip */}
                            <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-slate-800 text-white text-[10px] font-bold px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-all transform translate-y-2 group-hover:translate-y-0 pointer-events-none shadow-xl whitespace-nowrap z-20">
-                              {h}% 달성
+                              {h}% {t.demos.dashboard.achievement}
                            </div>
                         </motion.div>
                      ))}
@@ -177,8 +178,11 @@ const DashboardDemo = () => {
                   {/* X-Axis */}
                   <div className="flex justify-between mt-4 text-[10px] text-slate-400 font-bold uppercase px-2">
                      {timeRange === 'weekly'
-                        ? ['월', '화', '수', '목', '금', '토', '일', '월', '화', '수', '목', '금', '토', '일'].map((d, i) => <span key={i}>{d}</span>)
-                        : Array.from({ length: 12 }, (_, i) => <span key={i}>{i * 2}시</span>)
+                        ? (language === 'ko'
+                           ? ['월', '화', '수', '목', '금', '토', '일', '월', '화', '수', '목', '금', '토', '일']
+                           : ['M', 'T', 'W', 'T', 'F', 'S', 'S', 'M', 'T', 'W', 'T', 'F', 'S', 'S']
+                        ).map((d, i) => <span key={i}>{d}</span>)
+                        : Array.from({ length: 12 }, (_, i) => <span key={i}>{i * 2}{language === 'ko' ? '시' : 'h'}</span>)
                      }
                   </div>
                </div>
@@ -192,14 +196,16 @@ const DashboardDemo = () => {
 // 2. Fintech Demo (Live Trading Logic)
 // ==========================================
 
-const COINS = {
-   BTC: { name: '비트코인', basePrice: 42350000, volatility: 20000 },
-   ETH: { name: '이더리움', basePrice: 2230000, volatility: 2000 },
-   SOL: { name: '솔라나', basePrice: 98400, volatility: 500 },
-   XRP: { name: '리플', basePrice: 720, volatility: 5 },
-};
-
 const FintechDemo = () => {
+   const { t } = useLanguage();
+
+   const COINS = {
+      BTC: { name: t.demos.fintech.coins.BTC, basePrice: 42350000, volatility: 20000 },
+      ETH: { name: t.demos.fintech.coins.ETH, basePrice: 2230000, volatility: 2000 },
+      SOL: { name: t.demos.fintech.coins.SOL, basePrice: 98400, volatility: 500 },
+      XRP: { name: t.demos.fintech.coins.XRP, basePrice: 720, volatility: 5 },
+   };
+
    const [activeCoin, setActiveCoin] = useState<keyof typeof COINS>('BTC');
    const [balance, setBalance] = useState(50000000); // 5000만원
    const [holdings, setHoldings] = useState<{ [key: string]: number }>({ BTC: 0.5, ETH: 10, SOL: 0, XRP: 0 });
@@ -245,11 +251,11 @@ const FintechDemo = () => {
 
    const handleTrade = (type: 'buy' | 'sell') => {
       if (type === 'buy') {
-         if (balance < price * 0.1) return alert('잔액이 부족합니다.');
+         if (balance < price * 0.1) return alert(t.demos.fintech.insufficientBalance);
          setBalance(prev => prev - price * 0.1);
          setHoldings(prev => ({ ...prev, [activeCoin]: (prev[activeCoin] || 0) + 0.1 }));
       } else {
-         if ((holdings[activeCoin] || 0) < 0.1) return alert('보유량이 부족합니다.');
+         if ((holdings[activeCoin] || 0) < 0.1) return alert(t.demos.fintech.insufficientHoldings);
          setBalance(prev => prev + price * 0.1);
          setHoldings(prev => ({ ...prev, [activeCoin]: (prev[activeCoin] || 0) - 0.1 }));
       }
@@ -266,7 +272,7 @@ const FintechDemo = () => {
             <div className="p-4 border-b border-slate-200 font-bold text-slate-800 flex items-center gap-2 bg-white">
                <Wallet size={16} className="text-indigo-600" />
                <div>
-                  <div className="text-[10px] text-slate-400 font-normal">보유 자산 (KRW)</div>
+                  <div className="text-[10px] text-slate-400 font-normal">{t.demos.fintech.holdings}</div>
                   <div>₩{balance.toLocaleString()}</div>
                </div>
             </div>
@@ -313,13 +319,13 @@ const FintechDemo = () => {
                         onClick={() => handleTrade('buy')}
                         className="bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold px-5 py-2 rounded-lg transition-all shadow-sm shadow-emerald-200 text-xs"
                      >
-                        매수 (0.1)
+                        {t.demos.fintech.buy} (0.1)
                      </button>
                      <button
                         onClick={() => handleTrade('sell')}
                         className="bg-red-500 hover:bg-red-600 active:scale-95 text-white font-bold px-5 py-2 rounded-lg transition-all shadow-sm shadow-red-200 text-xs"
                      >
-                        매도 (0.1)
+                        {t.demos.fintech.sell} (0.1)
                      </button>
                   </div>
                </div>
@@ -373,6 +379,7 @@ const FintechDemo = () => {
 // 3. Product Card Demo (Interactive E-commerce)
 // ==========================================
 const ProductCardDemo = () => {
+   const { t } = useLanguage();
    const [activeImage, setActiveImage] = useState(0);
    const [cartCount, setCartCount] = useState(0);
    const [isLiked, setIsLiked] = useState(false);
@@ -412,9 +419,9 @@ const ProductCardDemo = () => {
                   )}
                   {/* Cart Dropdown Preview */}
                   <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-xl border border-slate-100 p-3 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all transform origin-top-right scale-95 group-hover:scale-100">
-                     <div className="text-xs font-bold text-slate-800 mb-2 font-sans">장바구니 ({cartCount})</div>
-                     <div className="text-xs text-slate-500 font-sans">합계: ₩{(cartCount * 249000).toLocaleString()}</div>
-                     <button className="w-full mt-2 bg-slate-900 text-white text-[10px] py-1.5 rounded font-bold font-sans">결제하기</button>
+                     <div className="text-xs font-bold text-slate-800 mb-2 font-sans">{t.demos.product.cart} ({cartCount})</div>
+                     <div className="text-xs text-slate-500 font-sans">{t.demos.product.total}: ₩{(cartCount * 249000).toLocaleString()}</div>
+                     <button className="w-full mt-2 bg-slate-900 text-white text-[10px] py-1.5 rounded font-bold font-sans">{t.demos.product.checkout}</button>
                   </div>
                </div>
             </div>
@@ -463,7 +470,7 @@ const ProductCardDemo = () => {
                         <span className="text-xs font-bold text-red-500 bg-red-50 px-1.5 py-0.5 rounded font-sans">-17%</span>
                      </div>
                      <p className="text-sm text-slate-500 font-medium leading-relaxed font-sans">
-                        도심 속 라이프스타일을 위한 초경량 백팩. 발수 코팅 처리된 프리미엄 캔버스 소재와 20L의 넉넉한 수납공간.
+                        {t.demos.product.description}
                      </p>
                   </div>
 
@@ -494,10 +501,10 @@ const ProductCardDemo = () => {
                      >
                         {showCartNotif ? (
                            <motion.div initial={{ y: 20 }} animate={{ y: 0 }} className="flex items-center gap-2">
-                              <Check size={18} /> 담기 완료
+                              <Check size={18} /> {t.demos.product.added}
                            </motion.div>
                         ) : (
-                           <>장바구니 담기</>
+                           <>{t.demos.product.addToCart}</>
                         )}
                      </button>
                   </div>
@@ -515,7 +522,7 @@ const ProductCardDemo = () => {
                   className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl z-50 flex items-center gap-3"
                >
                   <div className="bg-emerald-500 rounded-full p-1"><Check size={12} strokeWidth={3} /></div>
-                  <span className="text-sm font-bold font-sans">장바구니에 상품이 추가되었습니다.</span>
+                  <span className="text-sm font-bold font-sans">{t.demos.product.addedNotification}</span>
                </motion.div>
             )}
          </AnimatePresence>
@@ -528,19 +535,20 @@ const BrowserWindow: React.FC<{ children: React.ReactNode }> = ({ children }) =>
    return (
       <div className="relative rounded-xl overflow-hidden bg-white border border-slate-200 shadow-2xl shadow-slate-200/50 transition-all duration-500 h-[600px] md:h-[500px] lg:h-[600px] w-full transform group-hover:scale-[1.01]">
          {/* Browser Header - Light Mode */}
-         <div className="bg-slate-50 px-4 py-3 flex items-center gap-3 border-b border-slate-200">
-            <div className="flex gap-1.5">
+         <div className="bg-slate-50 px-2 md:px-4 py-3 flex items-center gap-2 md:gap-3 border-b border-slate-200">
+            <div className="flex gap-1.5 flex-shrink-0">
                <div className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e]" />
                <div className="w-3 h-3 rounded-full bg-[#febc2e] border border-[#d89e24]" />
                <div className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29]" />
             </div>
-            <div className="flex-1 flex justify-center">
-               <div className="bg-white rounded-md h-7 w-3/4 lg:w-1/2 border border-slate-200 flex items-center px-3 gap-2 shadow-sm transition-all hover:border-slate-300">
-                  <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
-                  <div className="text-xs text-slate-500 font-medium font-mono">secure | https://demo-app.io</div>
+            <div className="flex-1 flex justify-center min-w-0">
+               <div className="bg-white rounded-md h-7 w-full max-w-[200px] md:max-w-xs lg:max-w-md border border-slate-200 flex items-center px-2 md:px-3 gap-2 shadow-sm transition-all hover:border-slate-300">
+                  <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse flex-shrink-0" />
+                  <div className="text-xs text-slate-500 font-medium font-mono truncate hidden sm:block">secure | https://demo-app.io</div>
+                  <div className="text-xs text-slate-500 font-medium font-mono truncate sm:hidden">demo-app.io</div>
                </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-shrink-0">
                <RefreshCw size={14} className="text-slate-400" />
             </div>
          </div>

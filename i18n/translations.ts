@@ -109,6 +109,76 @@ export const translations = {
       inquiryButton: "프로젝트 문의하기",
       email: "Email",
       copyright: "© 2026 Neural Lab. ALL RIGHTS RESERVED."
+    },
+    demos: {
+      dashboard: {
+        title: "통합 대시보드",
+        revenue: "누적 매출액",
+        users: "활성 사용자",
+        bounce: "이탈률",
+        chartTitle: "매출 추이 분석",
+        chartHover: "마우스를 올려 상세 내역을 확인하세요",
+        chartSelected: "선택된 구간 매출",
+        daily: "일간",
+        weekly: "주간",
+        today: "오늘",
+        last30Days: "최근 30일",
+        achievement: "달성"
+      },
+      fintech: {
+        hello: "안녕하세요,",
+        user: "User님",
+        totalBalance: "Total Balance",
+        vsLastMonth: "vs 지난달",
+        send: "송금",
+        charge: "충전",
+        recentTransactions: "최근 내역",
+        viewAll: "전체보기",
+        sendingInProgress: "송금 진행 중...",
+        pleaseWait: "잠시만 기다려주세요",
+        sendComplete: "송금 완료",
+        today: "오늘",
+        yesterday: "어제",
+        justNow: "방금",
+        buy: "매수",
+        sell: "매도",
+        insufficientBalance: "잔액이 부족합니다.",
+        insufficientHoldings: "보유량이 부족합니다.",
+        holdings: "보유 자산 (KRW)",
+        coins: {
+          BTC: "비트코인",
+          ETH: "이더리움",
+          SOL: "솔라나",
+          XRP: "리플"
+        }
+      },
+      product: {
+        bestSeller: "BEST SELLER",
+        cart: "장바구니",
+        total: "합계",
+        checkout: "결제하기",
+        addToCart: "장바구니 담기",
+        added: "담기 완료",
+        addedNotification: "장바구니에 상품이 추가되었습니다.",
+        description: "도심 속 라이프스타일을 위한 초경량 백팩. 발수 코팅 처리된 프리미엄 캔버스 소재와 20L의 넉넉한 수납공간.",
+        color: "Color"
+      },
+      delivery: {
+        address: "서울시 강남구 테헤란로 427",
+        searchPlaceholder: "먹고 싶은 메뉴를 검색해보세요",
+        categories: ["버거", "피자", "한식", "디저트", "일식"],
+        firstOrderDiscount: "첫 주문 할인",
+        allMenuDiscount: "모든 메뉴\n20% 할인",
+        getCoupon: "쿠폰 받기",
+        recommended: "추천 메뉴",
+        viewCart: "장바구니 보기",
+        foods: [
+          { name: "더블 치즈버거", time: "15-20분" },
+          { name: "페퍼로니 피자", time: "25-30분" },
+          { name: "아보카도 샐러드", time: "10-15분" },
+          { name: "초코 도넛", time: "5-10분" }
+        ]
+      }
     }
   },
   en: {
@@ -120,13 +190,13 @@ export const translations = {
     },
     hero: {
       headline: "GIVING YOUR\nBUSINESS A BRAIN.",
-      subheadline: "Web, App, and AI Solutions.\nNeural Lab develops intelligent software that drives business growth beyond simple functionality.",
+      subheadline: "Web, App, and AI Solutions.\nNeural Lab builds intelligent software that goes beyond features—we accelerate business growth.",
       cta: "Explore Neural Lab"
     },
     projects: {
       title: "FEATURED",
       titleHighlight: "PROJECTS",
-      subtitle: "Projects that solve real business problems. Each project was developed with clear objectives and measurable outcomes.",
+      subtitle: "Real solutions to real business challenges. Every project is built with measurable outcomes and clear objectives.",
       problem: "Problem",
       solution: "Solution",
       tryDemo: "Try it yourself in the",
@@ -135,41 +205,41 @@ export const translations = {
       items: [
         {
           title: "Insight Analytics Pro",
-          description: "Enterprise-grade dashboard that visualizes complex business metrics in 0.8 seconds. SSR optimization reduced initial loading by 73%, maximizing data analysis efficiency with intuitive chart interactions.",
+          description: "Enterprise dashboard that renders complex business metrics in 0.8 seconds. SSR optimization slashed initial load times by 73%, while intuitive chart interactions maximize analytical efficiency.",
           result: "73% Faster Load",
-          problem: "The existing dashboard loaded tens of thousands of data points at once, taking over 3 seconds for initial entry. Complex UI was degrading data analysis efficiency.",
-          solution: "Implemented Next.js SSR and SWR caching strategy to reduce initial load time from 3s to 0.8s (73% improvement). Customized Recharts for intuitive data visualization.",
+          problem: "Legacy dashboard loaded tens of thousands of data points simultaneously, resulting in 3+ second load times. Complex UI hindered efficient data analysis workflows.",
+          solution: "Deployed Next.js SSR with SWR caching to cut load time from 3s to 0.8s—a 73% improvement. Custom Recharts implementation delivers intuitive data visualization.",
           features: [
-            "SSR + SWR Caching (73% improvement)",
+            "SSR + SWR Caching (73% faster)",
             "Real-time Data Streaming",
-            "Large Table Virtualization",
-            "One-click Report Export"
+            "Virtualized Large Tables",
+            "One-Click Report Export"
           ]
         },
         {
           title: "Coin Verse Exchange",
-          description: "Trading UI that displays real-time prices updating dozens of times per second without lag. Rendering optimization reduced CPU usage by 40%, with responsive design for mobile.",
-          result: "40% CPU Reduction",
-          problem: "Severe lag occurred when reflecting price data updating dozens of times per second. Mobile usage was nearly impossible.",
-          solution: "Eliminated unnecessary re-renders with WebSocket message throttling and React.memo optimization, reducing CPU usage by 40%. Designed responsive layout optimized for mobile viewports.",
+          description: "Blazing-fast trading interface handling dozens of price updates per second without lag. Rendering optimizations reduced CPU load by 40% with full mobile responsiveness.",
+          result: "40% Less CPU",
+          problem: "Price feeds updating dozens of times per second caused severe UI lag. Mobile experience was virtually unusable.",
+          solution: "Implemented WebSocket throttling and React.memo optimizations to eliminate unnecessary re-renders, cutting CPU usage by 40%. Responsive layout optimized for mobile trading.",
           features: [
-            "WebSocket Real-time Order Book",
-            "Rendering Optimization (40% improvement)",
-            "Full Mobile Support",
-            "Real-time P&L Calculation"
+            "WebSocket Live Order Book",
+            "Render Optimization (40% faster)",
+            "Mobile-First Design",
+            "Real-Time P&L Tracking"
           ]
         },
         {
           title: "Lumina Commerce",
-          description: "Micro-interaction commerce that responds instantly to user actions. Context-aware design with organic background transitions when selecting colors elevated the shopping experience.",
+          description: "Hyper-responsive e-commerce with micro-interactions that react instantly to user input. Context-aware design seamlessly transitions backgrounds when selecting product colors.",
           result: "Premium UX",
-          problem: "High user bounce rate due to static product pages. Unnecessary page navigation for color/detail confirmation was hindering purchase conversion.",
-          solution: "Implemented color/angle transitions without page navigation using Framer Motion's Shared Layout Animation. Enhanced visual feedback for add-to-cart actions.",
+          problem: "Static product pages led to high bounce rates. Clunky navigation for color/detail viewing disrupted purchase flow.",
+          solution: "Leveraged Framer Motion's Shared Layout Animation for instant color/angle switching without page reloads. Enhanced add-to-cart feedback for smoother conversions.",
           features: [
-            "Context-aware Theme Switching",
-            "Smooth Cart Animations",
-            "In-page Product Exploration",
-            "Keyboard Accessibility"
+            "Context-Aware Theme Switching",
+            "Fluid Cart Animations",
+            "Zero-Navigation Product Browsing",
+            "Full Keyboard Accessibility"
           ]
         }
       ]
@@ -177,14 +247,14 @@ export const translations = {
     tech: {
       title: "NEURAL LAB'S",
       titleHighlight: "BLUEPRINT",
-      subtitle: "A curated, uncompromising tech stack with Neural Lab's philosophy. We design architectures that balance stability and scalability.",
+      subtitle: "Battle-tested technologies chosen with zero compromise. We architect for both rock-solid stability and infinite scalability.",
       frontend: {
         title: "Frontend Ecosystem",
-        description: "We pursue Component-Driven Development (CDD) based on Next.js and React. Building reusable design systems and implementing lively interactions with Framer Motion."
+        description: "Component-Driven Development (CDD) powered by Next.js and React. We craft reusable design systems and bring interfaces to life with Framer Motion."
       },
       ai: {
-        title: "AI Intelligent",
-        description: "Building intelligent interfaces beyond simple UI using LLM APIs (OpenAI, Gemini). Integrating AI agent features that understand user intent."
+        title: "AI Intelligence",
+        description: "Intelligent interfaces powered by LLM APIs (OpenAI, Gemini). We integrate AI agents that truly understand user intent—not just respond to clicks."
       },
       backend: {
         title: "Backend & DevOps",
@@ -192,35 +262,105 @@ export const translations = {
         runtime: "Runtime"
       },
       crossPlatform: {
-        title: "Cross Platform",
-        description: "Extending to iOS and Android apps using web technologies. Achieving native-level performance through React Native and Flutter."
+        title: "Cross-Platform",
+        description: "Web technologies extended to iOS and Android. Native-grade performance through React Native and Flutter—write once, deploy everywhere."
       }
     },
     apps: {
       title: "CROSS-PLATFORM",
       titleHighlight: "MOBILE APPS",
-      subtitle: "Building on our web expertise, we extend to iOS and Android apps. Delivering native-level performance with consistent user experience.",
+      subtitle: "From web mastery to mobile excellence. Native performance meets consistent UX across iOS and Android.",
       reactNative: {
         title: "React Native",
-        subtitle: "Cross-platform leveraging web developer strengths",
-        description: "Utilize powerful React ecosystem libraries directly. Maximize development speed and maintenance efficiency through web-app code sharing.",
-        features: ["React Ecosystem", "Web/App Code Sharing", "Fast Dev Cycle"]
+        subtitle: "Cross-platform built on web expertise",
+        description: "Tap into the entire React ecosystem. Share code between web and mobile for lightning-fast development and effortless maintenance.",
+        features: ["Full React Ecosystem", "Web/Mobile Code Sharing", "Rapid Development"]
       },
       flutter: {
         title: "Flutter",
-        subtitle: "When pixel-perfect custom UI is needed",
-        description: "Implement complex animations and custom UI with native performance using Google's widget-based framework.",
-        features: ["60fps Native Performance", "Full UI Customization", "Fast Hot Reload"]
+        subtitle: "For pixel-perfect custom experiences",
+        description: "Google's widget framework delivers complex animations and custom UI at native speeds. Total design freedom without performance trade-offs.",
+        features: ["Buttery 60fps", "Unlimited Customization", "Instant Hot Reload"]
       }
     },
     contact: {
       title: "YOUR VISION,",
       titleHighlight: "NEURAL LAB'S INTELLIGENCE",
-      subtitle: "Ready to accelerate your business with future technology?",
+      subtitle: "Ready to supercharge your business with cutting-edge technology?",
       inquiry: "Inquiry",
       inquiryButton: "Start a Project",
       email: "Email",
       copyright: "© 2026 Neural Lab. ALL RIGHTS RESERVED."
+    },
+    demos: {
+      dashboard: {
+        title: "Analytics Dashboard",
+        revenue: "Total Revenue",
+        users: "Active Users",
+        bounce: "Bounce Rate",
+        chartTitle: "Revenue Trend Analysis",
+        chartHover: "Hover to see detailed metrics",
+        chartSelected: "Selected Period Revenue",
+        daily: "Daily",
+        weekly: "Weekly",
+        today: "Today",
+        last30Days: "Last 30 Days",
+        achievement: "Achievement"
+      },
+      fintech: {
+        hello: "Hello,",
+        user: "User",
+        totalBalance: "Total Balance",
+        vsLastMonth: "vs Last Month",
+        send: "Send",
+        charge: "Deposit",
+        recentTransactions: "Recent Activity",
+        viewAll: "View All",
+        sendingInProgress: "Sending...",
+        pleaseWait: "Please wait",
+        sendComplete: "Transfer Complete",
+        today: "Today",
+        yesterday: "Yesterday",
+        justNow: "Just now",
+        buy: "Buy",
+        sell: "Sell",
+        insufficientBalance: "Insufficient balance.",
+        insufficientHoldings: "Insufficient holdings.",
+        holdings: "Total Assets (KRW)",
+        coins: {
+          BTC: "Bitcoin",
+          ETH: "Ethereum",
+          SOL: "Solana",
+          XRP: "Ripple"
+        }
+      },
+      product: {
+        bestSeller: "BEST SELLER",
+        cart: "Cart",
+        total: "Total",
+        checkout: "Checkout",
+        addToCart: "Add to Cart",
+        added: "Added",
+        addedNotification: "Item added to cart successfully.",
+        description: "Ultra-light backpack for urban lifestyle. Premium water-resistant canvas with 20L spacious storage.",
+        color: "Color"
+      },
+      delivery: {
+        address: "427 Teheran-ro, Gangnam-gu, Seoul",
+        searchPlaceholder: "Search for your favorite food",
+        categories: ["Burgers", "Pizza", "Korean", "Desserts", "Japanese"],
+        firstOrderDiscount: "First Order",
+        allMenuDiscount: "20% OFF\nAll Menu",
+        getCoupon: "Get Coupon",
+        recommended: "Recommended",
+        viewCart: "View Cart",
+        foods: [
+          { name: "Double Cheeseburger", time: "15-20 min" },
+          { name: "Pepperoni Pizza", time: "25-30 min" },
+          { name: "Avocado Salad", time: "10-15 min" },
+          { name: "Chocolate Donut", time: "5-10 min" }
+        ]
+      }
     }
   }
 } as const;
