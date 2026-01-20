@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import {
-   Code2, Database, Cpu, Zap, Layers,
-   Smartphone, Box, Terminal, Globe, LayoutTemplate
+   Database, Cpu, Zap, Layers,
+   Smartphone, LayoutTemplate
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 interface TechBadgeProps {
    children: React.ReactNode;
@@ -16,6 +17,8 @@ const TechBadge: React.FC<TechBadgeProps> = ({ children }) => (
 );
 
 const TechStack: React.FC = () => {
+   const { t } = useLanguage();
+
    return (
       <section id="tech" className="py-32 bg-white relative overflow-hidden">
          {/* Background Decor */}
@@ -33,10 +36,10 @@ const TechStack: React.FC = () => {
             >
                <div className="max-w-2xl">
                   <h2 className="font-display text-4xl md:text-5xl font-bold text-textMain mb-4 tracking-tight word-keep-all">
-                     NEURAL LAB'S <span className="text-primary">BLUEPRINT</span>
+                     {t.tech.title} <span className="text-primary">{t.tech.titleHighlight}</span>
                   </h2>
                   <p className="text-textSub font-sans text-lg break-keep leading-relaxed">
-                     Neural Lab만의 철학으로 엄선된, 타협 없는 기술 스택. 안정성과 확장성을 동시에 고려한 아키텍처를 설계합니다.
+                     {t.tech.subtitle}
                   </p>
                </div>
             </motion.div>
@@ -60,11 +63,10 @@ const TechStack: React.FC = () => {
                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center text-blue-600 shadow-sm">
                               <Layers size={20} />
                            </div>
-                           <h3 className="font-display text-2xl font-bold text-textMain">Frontend Ecosystem</h3>
+                           <h3 className="font-display text-2xl font-bold text-textMain">{t.tech.frontend.title}</h3>
                         </div>
                         <p className="text-textSub font-sans mb-8 max-w-md">
-                           Next.js와 React를 기반으로 한 컴포넌트 주도 개발(CDD)을 지향합니다.
-                           재사용 가능한 디자인 시스템을 구축하고, Framer Motion으로 생동감 있는 인터랙션을 구현합니다.
+                           {t.tech.frontend.description}
                         </p>
                      </div>
 
@@ -92,11 +94,11 @@ const TechStack: React.FC = () => {
                         <div className="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 shadow-sm">
                            <Cpu size={20} />
                         </div>
-                        <h3 className="font-display text-xl font-bold text-textMain">AI Intelligent</h3>
+                        <h3 className="font-display text-xl font-bold text-textMain">{t.tech.ai.title}</h3>
                      </div>
 
                      <p className="text-textSub font-sans text-sm mb-8 leading-relaxed">
-                        LLM API(OpenAI, Gemini)를 활용하여 단순한 UI를 넘어선 지능형 인터페이스를 구축합니다. 사용자 의도를 파악하는 AI 에이전트 기능을 통합합니다.
+                        {t.tech.ai.description}
                      </p>
 
                      {/* Abstract Visual */}
@@ -143,12 +145,12 @@ const TechStack: React.FC = () => {
                         <div className="w-10 h-10 rounded-xl bg-green-100 flex items-center justify-center text-green-600 shadow-sm">
                            <Database size={20} />
                         </div>
-                        <h3 className="font-display text-xl font-bold text-textMain">Backend & DevOps</h3>
+                        <h3 className="font-display text-xl font-bold text-textMain">{t.tech.backend.title}</h3>
                      </div>
 
                      <div className="space-y-4">
                         <div>
-                           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Serverless & DB</h4>
+                           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.tech.backend.serverless}</h4>
                            <div className="flex flex-wrap gap-2">
                               <TechBadge>Supabase</TechBadge>
                               <TechBadge>Firebase</TechBadge>
@@ -156,7 +158,7 @@ const TechStack: React.FC = () => {
                            </div>
                         </div>
                         <div>
-                           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Runtime</h4>
+                           <h4 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">{t.tech.backend.runtime}</h4>
                            <div className="flex flex-wrap gap-2">
                               <TechBadge>Node.js</TechBadge>
                               <TechBadge>Python</TechBadge>
@@ -180,11 +182,11 @@ const TechStack: React.FC = () => {
                         <div className="w-10 h-10 rounded-xl bg-orange-100 flex items-center justify-center text-orange-600 shadow-sm">
                            <Smartphone size={20} />
                         </div>
-                        <h3 className="font-display text-xl font-bold text-textMain">Cross Platform</h3>
+                        <h3 className="font-display text-xl font-bold text-textMain">{t.tech.crossPlatform.title}</h3>
                      </div>
 
                      <p className="text-textSub font-sans text-sm mb-6">
-                        웹 기술을 활용하여 iOS와 Android 앱까지 확장합니다. React Native와 Flutter를 통해 네이티브 수준의 성능을 구현합니다.
+                        {t.tech.crossPlatform.description}
                      </p>
 
                      <div className="flex flex-col gap-2">

@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-   Smartphone, Wifi, Battery, Signal,
-   Home, Search, User, Heart, ShoppingBag,
-   ArrowLeft, MoreVertical, Star, Plus, MapPin,
+   Wifi, Battery, Signal,
+   Home, Search, User, ShoppingBag,
+   ArrowLeft, Star, Plus, MapPin,
    CreditCard, Send, History, Bell, ChevronDown
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 // ==========================================
 // Reusable Phone Frame Component
@@ -337,6 +338,8 @@ const DeliveryApp = () => {
 // Main Section Component
 // ==========================================
 const MobileApps: React.FC = () => {
+   const { t } = useLanguage();
+
    return (
       <section id="mobile-apps" className="py-32 bg-surfaceHighlight relative overflow-hidden">
          <div className="container mx-auto px-6 max-w-7xl relative z-10">
@@ -346,10 +349,10 @@ const MobileApps: React.FC = () => {
                <div className="lg:col-span-4 lg:sticky lg:top-32">
                   <span className="text-sm font-bold text-textSub/50 uppercase tracking-widest mb-2 block">Mobile Development</span>
                   <h2 className="font-display text-4xl md:text-5xl font-bold text-textMain mb-6 tracking-tight">
-                     BEYOND <span className="text-primary">WEB</span>
+                     {t.apps.title} <span className="text-primary">{t.apps.titleHighlight}</span>
                   </h2>
                   <p className="text-textSub font-sans text-lg break-keep leading-relaxed mb-8">
-                     웹을 넘어 네이티브 앱까지. React Native와 Flutter를 활용하여 각 플랫폼(iOS, Android)에 최적화된 고성능 인터랙션을 제공합니다.
+                     {t.apps.subtitle}
                   </p>
 
                   <ul className="space-y-4">

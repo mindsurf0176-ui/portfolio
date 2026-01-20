@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CONTACT_INFO } from '../constants';
-import { ArrowUpRight, Mail, Check, Copy } from 'lucide-react';
+import { ArrowUpRight, Check, Copy } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 const Contact: React.FC = () => {
   const [copied, setCopied] = useState(false);
+  const { t } = useLanguage();
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(CONTACT_INFO.email);
@@ -26,12 +28,11 @@ const Contact: React.FC = () => {
               viewport={{ once: true }}
               className="font-display text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter leading-none mb-8"
             >
-              YOUR VISION,<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary to-purple-500">NEURAL LAB'S</span><br />
-              INTELLIGENCE.
+              {t.contact.title}<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-br from-primary to-purple-500">{t.contact.titleHighlight}</span>
             </motion.h2>
             <p className="text-slate-400 text-lg md:text-xl max-w-md font-sans leading-relaxed">
-              {CONTACT_INFO.consultingText}
+              {t.contact.subtitle}
             </p>
           </div>
 
@@ -46,8 +47,8 @@ const Contact: React.FC = () => {
                 className="group flex items-center justify-between p-6 md:p-8 rounded-3xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer"
               >
                 <div>
-                  <span className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Inquiry</span>
-                  <span className="text-2xl font-bold">프로젝트 문의하기</span>
+                  <span className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">{t.contact.inquiry}</span>
+                  <span className="text-2xl font-bold">{t.contact.inquiryButton}</span>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-white text-black flex items-center justify-center group-hover:scale-110 transition-transform">
                   <ArrowUpRight size={24} />
@@ -59,7 +60,7 @@ const Contact: React.FC = () => {
                 className="w-full group flex items-center justify-between p-6 md:p-8 rounded-3xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer text-left"
               >
                 <div>
-                  <span className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">Email</span>
+                  <span className="block text-sm font-bold text-slate-400 uppercase tracking-widest mb-1">{t.contact.email}</span>
                   <span className="text-2xl font-bold break-all">{CONTACT_INFO.email}</span>
                 </div>
                 <div className="w-12 h-12 rounded-full bg-slate-800 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -71,7 +72,7 @@ const Contact: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-8 pt-8 border-t border-white/10">
-              <span className="text-slate-600 text-sm font-mono">© 2026 Lee Min-seo (Neural Lab). ALL RIGHTS RESERVED.</span>
+              <span className="text-slate-600 text-sm font-mono">{t.contact.copyright}</span>
             </div>
 
           </div>

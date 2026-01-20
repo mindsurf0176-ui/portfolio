@@ -5,9 +5,12 @@ import Projects from './components/Projects';
 import MobileApps from './components/MobileApps';
 import Contact from './components/Contact';
 import { motion } from 'framer-motion';
+import { useLanguage } from './i18n';
+import { Globe } from 'lucide-react';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = React.useState('home');
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,10 +30,10 @@ const App: React.FC = () => {
   }, []);
 
   const navItems = [
-    { id: 'tech', label: 'Tech Stack' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'mobile-apps', label: 'Mobile Apps' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'tech', label: t.nav.tech },
+    { id: 'projects', label: t.nav.projects },
+    { id: 'mobile-apps', label: t.nav.apps },
+    { id: 'contact', label: t.nav.contact },
   ];
 
   return (
@@ -70,8 +73,16 @@ const App: React.FC = () => {
             href="#contact"
             className="hidden sm:block px-4 py-2 bg-textMain text-white rounded-full text-sm font-bold hover:bg-black/80 transition-colors shadow-md shadow-black/20 whitespace-nowrap"
           >
-            Inquiry
+            {t.contact.inquiry}
           </a>
+          <button
+            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+            className="flex items-center gap-1.5 px-3 py-2 rounded-full text-xs sm:text-sm font-medium text-textSub hover:text-textMain hover:bg-black/5 transition-all whitespace-nowrap"
+            title={language === 'ko' ? 'Switch to English' : '한국어로 전환'}
+          >
+            <Globe size={14} />
+            <span>{language === 'ko' ? 'EN' : '한'}</span>
+          </button>
         </nav>
       </div>
 

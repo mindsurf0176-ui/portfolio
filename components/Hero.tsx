@@ -1,13 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HERO_TEXT } from '../constants';
 import { ArrowDownRight } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 const TECH_MARQUEE = [
   "React", "Next.js", "TypeScript", "Node.js", "Go", "Flutter", "Python", "AWS", "Docker", "Firebase", "GraphQL", "TailwindCSS", "Figma", "OpenAI", "Git"
 ];
 
 const Hero: React.FC = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen w-full flex flex-col justify-between overflow-hidden bg-background pt-32 pb-10">
       {/* Abstract Background Shapes */}
@@ -35,7 +37,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
               className="font-display font-black text-4xl sm:text-5xl md:text-8xl lg:text-9xl tracking-tighter leading-[0.9] text-textMain mb-8 whitespace-pre-line break-words"
             >
-              {HERO_TEXT.headline}
+              {t.hero.headline}
             </motion.h1>
           </div>
 
@@ -46,7 +48,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-textSub text-base md:text-lg font-sans font-medium leading-relaxed break-keep mb-8 max-w-md ml-auto lg:ml-0"
             >
-              {HERO_TEXT.subheadline}
+              {t.hero.subheadline}
             </motion.p>
 
             <motion.div
@@ -59,7 +61,7 @@ const Hero: React.FC = () => {
                 href="#projects"
                 className="group flex items-center gap-2 border-b border-textMain pb-1 text-textMain font-bold text-lg hover:text-primary hover:border-primary transition-all"
               >
-                {HERO_TEXT.cta}
+                {t.hero.cta}
                 <ArrowDownRight className="group-hover:translate-x-1 group-hover:translate-y-1 transition-transform" />
               </a>
             </motion.div>

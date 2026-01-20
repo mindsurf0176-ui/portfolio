@@ -5,9 +5,10 @@ import {
    Check, Activity, Layout, ShoppingBag,
    Users, Bell, Search, Settings,
    ChevronDown, DollarSign, Wallet, Star, Plus, Minus, RefreshCw,
-   ChevronLeft, ChevronRight, ExternalLink, ArrowRight, Target, Zap,
+   ChevronLeft, ChevronRight, Target, Zap,
    CreditCard
 } from 'lucide-react';
+import { useLanguage } from '../i18n';
 
 // ==========================================
 // 1. Dashboard Demo (Functional)
@@ -554,6 +555,9 @@ const BrowserWindow: React.FC<{ children: React.ReactNode }> = ({ children }) =>
 const Projects: React.FC = () => {
    const [currentIndex, setCurrentIndex] = useState(0);
    const [direction, setDirection] = useState(0);
+   const { t } = useLanguage();
+
+   const projectData = t.projects.items[currentIndex];
 
    const paginate = (newDirection: number) => {
       setDirection(newDirection);
@@ -596,7 +600,7 @@ const Projects: React.FC = () => {
                <div>
                   <span className="text-sm font-bold text-textSub/50 uppercase tracking-widest mb-2 block">Selected Works</span>
                   <h2 className="font-display text-4xl md:text-5xl font-bold text-textMain tracking-tight">
-                     SELECTED <span className="text-primary">PROJECTS</span>
+                     {t.projects.title} <span className="text-primary">{t.projects.titleHighlight}</span>
                   </h2>
                </div>
                <div className="hidden md:flex items-center gap-2 text-textSub text-sm font-medium bg-white px-5 py-2.5 rounded-full border border-border shadow-sm">
@@ -638,10 +642,10 @@ const Projects: React.FC = () => {
                            <div className="mb-6">
                               <span className="text-primary font-bold text-xs tracking-widest uppercase mb-2 block">Case Study 0{currentProject.id}</span>
                               <h3 className="font-display text-4xl lg:text-5xl font-bold text-textMain leading-[1.1] mb-4">
-                                 {currentProject.title}
+                                 {projectData.title}
                               </h3>
                               <p className="text-textSub leading-relaxed font-sans text-base lg:text-lg break-keep mb-6">
-                                 {currentProject.description}
+                                 {projectData.description}
                               </p>
                            </div>
 
@@ -660,32 +664,26 @@ const Projects: React.FC = () => {
                            <div className="bg-white rounded-xl border border-slate-100 shadow-sm p-5 space-y-4 mb-6">
                               <div>
                                  <div className="flex items-center gap-2 text-xs font-bold text-red-500 uppercase tracking-wider mb-1">
-                                    <Target size={14} /> Problem
+                                    <Target size={14} /> {t.projects.problem}
                                  </div>
                                  <p className="text-sm text-textSub leading-relaxed line-clamp-2">
-                                    {currentProject.problem}
+                                    {projectData.problem}
                                  </p>
                               </div>
                               <div className="w-full h-px bg-slate-100" />
                               <div>
                                  <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 uppercase tracking-wider mb-1">
-                                    <Zap size={14} /> Solution
+                                    <Zap size={14} /> {t.projects.solution}
                                  </div>
                                  <p className="text-sm text-textSub leading-relaxed line-clamp-3">
-                                    {currentProject.solution}
+                                    {projectData.solution}
                                  </p>
                               </div>
                            </div>
 
-                           <div className="flex gap-4">
-                              <a
-                                 href={currentProject.demoLink}
-                                 target="_blank"
-                                 rel="noopener noreferrer"
-                                 className="flex items-center gap-2 text-primary font-bold text-sm hover:translate-x-1 transition-transform"
-                              >
-                                 Live Demo <ArrowRight size={18} />
-                              </a>
+                           <div className="flex items-center gap-2 text-sm text-textSub bg-primary/5 px-4 py-2 rounded-lg border border-primary/10">
+                              <Zap size={14} className="text-primary" />
+                              <span>{t.projects.tryDemo} <strong className="text-primary">{t.projects.tryDemoHighlight}</strong>{t.projects.tryDemoSuffix}</span>
                            </div>
                         </div>
                      </motion.div>
