@@ -20,8 +20,3 @@ export interface Skill {
   icon: LucideIcon;
   description: string;
 }
-
-export interface ChatMessage {
-  role: 'user' | 'model';
-  text: string;
-}
